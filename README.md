@@ -1,7 +1,7 @@
 
-####Calendar in React
+# Calendar in React
 
-##Functionalities
+## Functionalities
 
 The calendar displays days, weeks or months per page. 
 

@@ -2,69 +2,30 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+####Calendar in React####
 
-In the project directory, you can run:
+##Functionalities##
 
-### `npm start`
+The calendar displays days, weeks or months per page. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+It either displays **appointments** (represented by the `Termin`-Class) or **events** (`Event`-Class).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Events** have a `title`, description (`bio`), `date`, time (`hourValue`and `minuteValue`), a `dauer` and a list of `participants`.
+**Appointments** (Termine) have a `date`, starthour (`hourValue`) and startminute (`minuteValue`), a duration (`dauer`), a `Leistung` and a customer (`Kunde`).
 
-### `npm test`
+> Appointments can be booked from the calendar in *appointment-mode*. 
+> Per day free timeslots are displayed, which are not occupied by
+> another appointment at that time. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This calendar app is structured as follows: 
+The ***<App>-Component*** provides the context information. A `conf` object is used to pass configuration details to the calendar components via ReactContext.
+It renders on the condition of `conf.calendarType` and displays either a `DayCalendar`, `WeekCalendar` or `MonthCalendar`.
 
-### `npm run build`
+These components render on the condition of `conf.showEvents` either to show  *appointments* or *events*. 
+All three components return a combination of components: a **Navigationbar**, a **CalendarSettings**, a **CalendarLeistung** specific components to each `calendarType`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+>**CalendarLeistung** requires the user to select a service before displaying 
+> the selectable time slots (which are represented by the Class `TerminSlot`)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The **MonthCalendar** is split up into individual row component (`CalendarRow`). In addition the monthly version of the calendar has a display to show avalaible time slots or *events* (`MonthlyEventDisplay`)on a selected date in the calendar.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

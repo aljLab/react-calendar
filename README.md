@@ -1,10 +1,7 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+####Calendar in React
 
-####Calendar in React####
-
-##Functionalities##
+##Functionalities
 
 The calendar displays days, weeks or months per page. 
 
@@ -18,7 +15,7 @@ It either displays **appointments** (represented by the `Termin`-Class) or **eve
 > another appointment at that time. 
 
 This calendar app is structured as follows: 
-The ***<App>-Component*** provides the context information. A `conf` object is used to pass configuration details to the calendar components via ReactContext.
+The ***App-Component*** provides the context information. A `conf` object is used to pass configuration details to the calendar components via ReactContext.
 It renders on the condition of `conf.calendarType` and displays either a `DayCalendar`, `WeekCalendar` or `MonthCalendar`.
 
 These components render on the condition of `conf.showEvents` either to show  *appointments* or *events*. 

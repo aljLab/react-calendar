@@ -1,6 +1,6 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { ConfigContext } from './App.js';
-import { Termin, TerminSlot, Kunde, Event } from './Classes.js';
+import { Termin, Kunde, Event } from './Classes.js';
 import { getTimeSlotArray, taken, getDateString, getMonday } from './Classes.js'
 
 const events =[new Event("Yoga Samstag", "Frohes Beisammensein mit Shawangata Yoga und Keksen.", "25.11.2023", 10, 30, 12, 180, []), 
@@ -10,15 +10,20 @@ const termine= [new Termin("10", "00", "23.11.2023", "Anamnese", 4, new Kunde("H
 
 function WeekTerminCalendar({selected, setSelected}){
     const conf = useContext(ConfigContext)[0]
+    const setConf = useContext(ConfigContext)[1] 
 
     //CONDITIONAL RENDERING (Condition: Leistung selected?)
-    if(selected.leistung != "--"){
+    if(selected.leistung !== "--"){
         //if leistung AND Date AND time are chosen ------> display booking button
-        let display = (selected.leistung !="--"&&selected.hourValue != null&&selected.minuteValue!=null)? "block":"none";
+        let display = (selected.leistung !=="--"&&selected.hourValue !== null&&selected.minuteValue!==null)? "block":"none";
         return(
             <div className='main-container-calendar-weekly'>
                 <div className='termin-info-box'>{selected.leistung}, {selected.date}, {selected.hourValue}:{selected.minuteValue}</div>
-                <button className="buchen-button" style={{display: display}}>Buchen</button>
+                <button className="buchen-button" style={{display: display}} onClick={()=>{
+                    let copy = {...conf}
+                    copy.location = "booking"
+                    setConf(conf => copy)
+                }}>Buchen</button>
                 <div className='calendar-slot-container-weekly'>
                     {[0,1,2,3,4,5].map(entry =>{ 
                         let currentDate = new Date(getMonday(conf.date).getTime()+entry*24*60*60*1000)

@@ -6,10 +6,10 @@ import { getDateString } from './Classes.js';
 import DayCalendar from './DayCalendar.js';
 import MonthCalendar from './MonthCalendar.js';
 import WeekCalendar from './WeekCalendar.js';
+import BookingPage from './BookingPage.js';
+
 
 export const ConfigContext = React.createContext()
-const events =[new Event("Yoga Samstag", "Frohes Beisammensein mit Shawangata Yoga und Keksen.", "25.11.2023", 10, 30, 12, 180, []), 
-      new Event("Dharma Talk", "Kaffe und Philosophie! UwU", "23.11.2023", 12, 0, 8, 90, [])]
 
 function App() {
 
@@ -29,28 +29,38 @@ function App() {
   const [conf, setConf]=useState({date: new Date(), granularity: 15, calendarType: "daily", 
       showEvents: false, currentDate: new Date(), 
       businessHours: [["8.00-12.00","-"],["-"],["-"],["9.30-13.00","15.00-19.00", "-"],["15.00-19.00","-"]], 
-      currentDauer: 4});
+      currentDauer: 4, location: "calendar"});
 
 //CONDITIONAL RENDERING (Condition: calendarType)
 
-if(conf.calendarType =="weekly"){//WOCHENKALENDER
-      return (
-        <ConfigContext.Provider value={[conf, setConf]}>
-          <WeekCalendar selected = {selected} setSelected={setSelected}></WeekCalendar>
-        </ConfigContext.Provider>
-      )
-}else if(conf.calendarType=="monthly"){//MONATSKALENDER
+if(conf.location==="calendar"){
+  if(conf.calendarType ==="weekly"){//WOCHENKALENDER
+    return (
+      <ConfigContext.Provider value={[conf, setConf]}>
+        <WeekCalendar selected = {selected} setSelected={setSelected}></WeekCalendar>
+      </ConfigContext.Provider>
+    )
+  }else if(conf.calendarType==="monthly"){//MONATSKALENDER
         return (
           <ConfigContext.Provider value={[conf, setConf]}>
             <MonthCalendar selected = {selected} setSelected = {setSelected}></MonthCalendar>
           </ConfigContext.Provider>
         )
-}else if(conf.calendarType=="daily"){//TAGESKALENDER  
+  }else if(conf.calendarType==="daily"){//TAGESKALENDER  
         return (
           <ConfigContext.Provider value={[conf, setConf]}>
             <DayCalendar selected = {selected} setSelected={setSelected}></DayCalendar>
           </ConfigContext.Provider>
         )
+  }
+}else{
+  return(
+   <ConfigContext.Provider value ={[conf, setConf]}>
+      <div className='main-container'>
+        <BookingPage selected = {selected}></BookingPage>
+      </div>
+   </ConfigContext.Provider>
+  )
 }
 }
 

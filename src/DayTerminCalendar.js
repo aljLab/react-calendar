@@ -41,7 +41,11 @@ function DayTerminCalendar({selected, setSelected}){
                     return(
                         <div className="calendar-day-daily">
                             <div className='termin-info-box'>{selected.leistung}, {selected.date}, {selected.hourValue}:{selected.minuteValue}</div>
-                            <button className="buchen-button" style={{display: display}}>Buchen</button>
+                            <button className="buchen-button" style={{display: display}} onClick={()=>{
+                                    let copy = {...conf}
+                                    copy.location = "booking"
+                                    setConf(conf => copy)
+                                }}>Buchen</button>
                             <div className = "day-slot-container-daily">
                             {timeslots.map(terminslot=>{
                                 //Tag außerhalb der Betriebsferien?

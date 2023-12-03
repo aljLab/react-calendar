@@ -5,6 +5,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .main-container{
   width: 700px;
@@ -567,4 +568,72 @@ fieldset{
   background-color: rgba(255,255,255,0.6);
   color: rgb(20,20,20);
   border-radius: 15px;
+}
+/**
+* -----------------BOOKING STYLES-----------------------------
+*
+*/
+.booking-container-termine{
+  width: 95%;
+  background-color: lightcoral;
+  margin: 15px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+#booking-form-termine{
+  display:flex;
+  border-radius: 15px;
+  flex-direction: column;
+  background-color: rgba(255,255,255, 0.8);
+  width: 80%;
+  margin-bottom: 2rem;
+}
+#booking-form-termine > input{
+  margin: 1rem;
+}
+#booking-form-termine > label{
+  margin-left: 1rem;
+}
+#booking-form-termine > button{
+  width: 90%;
+  margin: 1rem;
+}
+.booking-box-header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin: 1rem;
+}
+.header-booking-container{
+  width: 66%;
+}
+.booking-box-container:first-child{
+  margin-left: 5px;
+}
+.back-button-container{
+  width: 33%;
+  display: flex;
+  align-items: center;
+}
+.back-button{
+  height: 3.5rem;
+  width: 6rem;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 15px;
+  border: 2px solid white;
+  background-color: rgb(100,100,100);
+  margin-left: 1rem;
+}
+.back-button:hover{
+  cursor: pointer;
+  background-color: rgb(140,140,140);
 }

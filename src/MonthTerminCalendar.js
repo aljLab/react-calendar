@@ -17,6 +17,7 @@ const termine= [new Termin("10", "00", "23.11.2023", "Anamnese", 4, new Kunde("H
 
 function MonthTerminCalendar({selected, setSelected}){
     const conf = useContext(ConfigContext)[0]
+    const setConf = useContext(ConfigContext)[1]
 
     let monthArray=getMonthArray(conf.date)
 
@@ -25,7 +26,11 @@ function MonthTerminCalendar({selected, setSelected}){
         return(
             <div className='main-container-monthly'>
                 <div className='termin-info-box'>{selected.leistung}, {selected.date}, {selected.hourValue}:{selected.minuteValue}</div>
-                <button className="buchen-button" style={{display: display}}>Buchen</button>
+                <button className="buchen-button" style={{display: display}} onClick={()=>{
+                    let copy = {...conf}
+                    copy.location = "booking"
+                    setConf(conf => copy)
+                }}>Buchen</button>
                 <TerminSlotContainer selected = {selected} setSelected = {setSelected}></TerminSlotContainer>
                 <div className="row-container-monthly">
                     {monthArray.map(startdate =>{
